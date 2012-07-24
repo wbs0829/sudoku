@@ -1,0 +1,21 @@
+OBJS = Solver.o SudokuSolver.o Sudoku.o SudokuBase.o Task.o Cell.o
+CC = g++
+DEBUG = -g
+CFLAGS = -Wall -c $(DEBUG)
+LFLAGS = -Wall $(DEBUG)
+
+Solver : $(OBJS)
+	$(CC) $(LFLAGS) $(OBJS) -o Solver
+
+Solver.o : SudokuSolver.cpp SudokuSolver.h Sudoku.h SudokuBase.h
+	$(CC) $(CFLAGS) Solver.cpp 
+SudokuSolver.o : SudokuSolver.cpp SudokuSolver.h Sudoku.h SudokuBase.h Task.h Cell.h
+	$(CC) $(CFLAGS) SudokuSolver.cpp 
+Sudoku.o : Sudoku.cpp Sudoku.h SudokuBase.h Cell.h
+	$(CC) $(CFLAGS) Sudoku.cpp 
+SudokuBase.o : SudokuBase.cpp SudokuBase.h
+	$(CC) $(CFLAGS) SudokuBase.cpp 
+Task.o : Task.cpp Task.h Cell.h
+	$(CC) $(CFLAGS) Task.cpp 
+Cell.o : Cell.cpp Cell.h
+	$(CC) $(CFLAGS) Cell.cpp 
